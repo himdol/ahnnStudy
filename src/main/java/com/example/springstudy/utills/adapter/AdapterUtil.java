@@ -5,4 +5,5 @@ public interface AdapterUtil {
     Object converterDtoToEntity(Object object);
 
     Object converterEntityToDto(Object object);
+
 }

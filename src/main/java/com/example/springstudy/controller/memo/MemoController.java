@@ -1,7 +1,7 @@
 package com.example.springstudy.controller.memo;
 
 import com.example.springstudy.dto.MemoDto;
-import com.example.springstudy.entity.memo.Memo;
+import com.example.springstudy.entity.memo.MemoEntity;
 import com.example.springstudy.service.memo.MemoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,13 +22,13 @@ public class MemoController {
     }
 
     @GetMapping("/api/index")
-    public List<Memo> findAll(){
+    public List<MemoEntity> findAll(){
         return memoService.findAll();
     }
 
     @PostMapping("/api/detail")
-    public MemoDto findByMemoSeq(@RequestBody MemoDto memoDto) {
-        return memoService.findByMemoSeq(memoDto);
+    public MemoDto findById(@RequestBody MemoDto memoDto) throws Exception {
+        return memoService.findById(memoDto);
     }
 
 }

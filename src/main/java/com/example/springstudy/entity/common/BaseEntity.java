@@ -1,5 +1,8 @@
 package com.example.springstudy.entity.common;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -10,6 +13,9 @@ import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 @MappedSuperclass
+@NoArgsConstructor
+@Getter
+@SuperBuilder
 public class BaseEntity {
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate

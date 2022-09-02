@@ -1,14 +1,16 @@
 package com.example.springstudy.repository.memo;
 
-import com.example.springstudy.dto.MemoDto;
-import com.example.springstudy.entity.memo.Memo;
+import com.example.springstudy.entity.memo.MemoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface MemoRepository extends JpaRepository<Memo, Long> {
+public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 
-    List<Memo> findAll();
+    List<MemoEntity> findAll();
 
-    MemoDto findMemoByMemoSeq(int memoSeq);
+    @Override
+    Optional<MemoEntity> findById(Long aLong);
+
 }

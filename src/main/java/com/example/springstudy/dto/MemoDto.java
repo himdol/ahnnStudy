@@ -1,27 +1,35 @@
 package com.example.springstudy.dto;
 
-import com.example.springstudy.utills.adapter.AdapterUtil;
+import com.example.springstudy.entity.memo.MemoEntity;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
-public class MemoDto implements Serializable, AdapterUtil {
+@Builder
+public class MemoDto implements Serializable {
     private static final long serialVersionUID = 3119855506498368340L;
-    private Integer memoSeq;
+    private long memoSeq;
     private String memoTitle;
     private String memoContent;
     private String memoWriter;
+    private Date createDate;
+    private String createBy;
+    private Date modifiedDate;
+    private String modifiedBy;
 
-    @Override
-    public Object converterDtoToEntity(Object object) {
-
-
-        return null;
-    }
-
-    @Override
-    public Object converterEntityToDto(Object object) {
-        return null;
+    public static MemoDto builderFromEntity(MemoEntity memoEntity){
+        return MemoDto.builder()
+                .memoSeq(memoEntity.getMemoSeq())
+                .memoTitle(memoEntity.getMemoTitle())
+                .memoContent(memoEntity.getMemoContent())
+                .memoWriter(memoEntity.getMemoWriter())
+                .createBy(memoEntity.getCreateBy())
+                .createDate(memoEntity.getCreateDate())
+                .modifiedBy(memoEntity.getModifiedBy())
+                .modifiedDate(memoEntity.getModifiedDate())
+                .build();
     }
 }

@@ -1,21 +1,23 @@
 package com.example.springstudy.entity.memo;
 
 import com.example.springstudy.entity.common.BaseEntity;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "MEMO")
+@Table(name = "MEMO")
 @Getter
 @RequiredArgsConstructor
-public class Memo extends BaseEntity {
+@SuperBuilder
+public class MemoEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMO_SEQ", nullable = false)
-    private Integer memoSeq;
+    private long memoSeq;
 
     @Column(name = "MEMO_TITLE", nullable = false)
     private String memoTitle;
@@ -26,8 +28,4 @@ public class Memo extends BaseEntity {
     @Column(name = "MEMO_WRITER", nullable = false)
     private String memoWriter;
 
-    @Builder
-    public void changeKey(Integer memoSeq){
-        this.memoSeq = memoSeq;
-    }
 }
