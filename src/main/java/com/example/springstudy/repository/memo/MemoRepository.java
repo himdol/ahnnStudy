@@ -13,4 +13,6 @@ public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
     @Override
     Optional<MemoEntity> findById(Long aLong);
 
+    @Override
+    <S extends MemoEntity> S save(S entity);
 }
