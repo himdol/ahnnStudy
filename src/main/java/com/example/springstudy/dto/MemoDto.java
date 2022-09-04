@@ -4,6 +4,7 @@ import com.example.springstudy.entity.memo.MemoEntity;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,8 +13,14 @@ import java.util.Date;
 public class MemoDto implements Serializable {
     private static final long serialVersionUID = 3119855506498368340L;
     private long memoSeq;
+
+    @NotNull
     private String memoTitle;
+
+    @NotNull
     private String memoContent;
+
+    @NotNull
     private String memoWriter;
     private Date createDate;
     private String createBy;
