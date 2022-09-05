@@ -6,4 +6,5 @@ public interface AdapterUtil {
 
     Object converterEntityToDto(Object object);
 
+    //todo :: builder 어뎁터 하기
 }
