@@ -5,7 +5,16 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ResponseToView {
+public class TResult {
+
+    /***
+     * header
+     * body
+     *
+     * 상태값
+     * 리턴값
+     * 메시지
+     */
 
     private String type;
 

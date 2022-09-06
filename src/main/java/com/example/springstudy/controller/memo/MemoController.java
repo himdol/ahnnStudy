@@ -2,7 +2,6 @@ package com.example.springstudy.controller.memo;
 
 import com.example.springstudy.constants.ExceptionConstants;
 import com.example.springstudy.dto.MemoDto;
-import com.example.springstudy.dto.response.view.ResponseToView;
 import com.example.springstudy.entity.memo.MemoEntity;
 import com.example.springstudy.service.memo.MemoService;
 import org.springframework.util.ObjectUtils;
@@ -49,15 +48,16 @@ public class MemoController implements ExceptionConstants {
     }
 
     @GetMapping("/api/modify")
-    public ResponseToView save(@RequestBody @Valid MemoDto memoDto){
-        memoService.save(memoDto);
-        return ResponseToView.builder().build();
+    public MemoDto save(@RequestBody @Valid MemoDto memoDto){
+        return memoService.save(memoDto);
     }
 
     @GetMapping("/test")
     public void test(@RequestBody MemoDto d){
         //TEST 목적 : json 으로 받아올 때 ObjectUtils 의 isEmpty를 사용하면 값이 없어도 True 반환 왜?
-        System.out.println(ObjectUtils.isEmpty(d));
+        if(Boolean.FALSE.equals(ObjectUtils.isEmpty(d))){
+            System.out.println("찍히니?");
+        }
     }
 
 

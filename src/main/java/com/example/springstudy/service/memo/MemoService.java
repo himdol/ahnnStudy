@@ -37,7 +37,9 @@ public class MemoService implements ExceptionConstants {
         return MemoDto.builderFromEntity(findEntityByMemoSeq);
     }
 
-    public void save(MemoDto memoDto) {
-        memoRepository.save(MemoEntity.builderFromDto(memoDto));
+    public MemoDto save(MemoDto memoDto) {
+
+        MemoEntity afterSaveMemoEntity = memoRepository.save(MemoEntity.builderFromDto(memoDto));
+        return MemoDto.builderFromEntity(afterSaveMemoEntity);
     }
 }

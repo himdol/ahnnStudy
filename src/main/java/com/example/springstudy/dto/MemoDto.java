@@ -4,6 +4,7 @@ import com.example.springstudy.entity.memo.MemoEntity;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +13,8 @@ import java.util.Date;
 @Builder
 public class MemoDto implements Serializable {
     private static final long serialVersionUID = 3119855506498368340L;
+
+    @Column(name = "memoSeq")
     private long memoSeq;
 
     @NotNull
@@ -23,9 +26,9 @@ public class MemoDto implements Serializable {
     @NotNull
     private String memoWriter;
     private Date createDate;
-    private String createBy;
+    private String createBy = "";
     private Date modifiedDate;
-    private String modifiedBy;
+    private String modifiedBy = "";
 
     public static MemoDto builderFromEntity(MemoEntity memoEntity){
         return MemoDto.builder()
