@@ -1,4 +1,4 @@
-var com = {
+let com = {
     project : {
         name : {
             common : {}
@@ -21,7 +21,7 @@ jQuery.ajaxSetup({
     }
 });
 
-var __SessionExpired = false;
+let __SessionExpired = false;
 
 com.project.name.common.ajax = (function() {
     // --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ com.project.name.common.utils = (function() {
         //---------------------------------------------------------------------------------------------------------
         // 파라미터 체크 (null이 넘어가지 않도록 함)
         isNull: function (p_para, p_type) {
-            var _returnValue;
+            let _returnValue;
 
             //파라미터 값이 없는 경우
             if (jQuery.type(p_para) === "null" || jQuery.type(p_para) === "undefined" || p_para == null || p_para === "") {
@@ -194,7 +194,7 @@ com.project.name.common.utils = (function() {
         formatDate : function(p_data, p_nonNull){
             p_data = com.project.name.common.utils.isNull(p_data, 'string');
             if(p_nonNull === true && (p_data === null || p_data === "" || p_data.length === 0)){
-                // TODO 서버 시간 받기 : var now = getServerTime();
+                // TODO 서버 시간 받기 : let now = getServerTime();
                 return new Date().toLocaleDateString().replace(/\./g, '').split(' ').map((v,i)=> i > 0 && v.length < 2 ? '0' + v : v).join('-');
             }
             if(p_data === '-'){
