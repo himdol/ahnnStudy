@@ -5,10 +5,7 @@ import com.example.springstudy.dto.MemoDto;
 import com.example.springstudy.entity.memo.MemoEntity;
 import com.example.springstudy.service.memo.MemoService;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -58,6 +55,12 @@ public class MemoController implements ExceptionConstants {
         if(Boolean.FALSE.equals(ObjectUtils.isEmpty(d))){
             System.out.println("찍히니?");
         }
+    }
+
+
+    @DeleteMapping("/api/forcedel")
+    public void deleteById(@RequestBody @Valid MemoDto memoDto) {
+        memoService.deleteById(memoDto);
     }
 
 

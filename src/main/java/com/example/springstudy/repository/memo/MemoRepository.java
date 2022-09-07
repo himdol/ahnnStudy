@@ -15,4 +15,7 @@ public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 
     @Override
     <S extends MemoEntity> S save(S entity);
+
+    @Override
+    void deleteById(Long aLong);
 }

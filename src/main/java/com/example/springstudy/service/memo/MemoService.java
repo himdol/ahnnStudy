@@ -5,7 +5,9 @@ import com.example.springstudy.dto.MemoDto;
 import com.example.springstudy.entity.memo.MemoEntity;
 import com.example.springstudy.repository.memo.MemoRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -38,8 +40,11 @@ public class MemoService implements ExceptionConstants {
     }
 
     public MemoDto save(MemoDto memoDto) {
-
         MemoEntity afterSaveMemoEntity = memoRepository.save(MemoEntity.builderFromDto(memoDto));
         return MemoDto.builderFromEntity(afterSaveMemoEntity);
+    }
+
+    public void deleteById(@RequestBody @Valid MemoDto memoDto) {
+       memoRepository.deleteById(MemoEntity.builderFromDto(memoDto).getMemoSeq());
     }
 }
