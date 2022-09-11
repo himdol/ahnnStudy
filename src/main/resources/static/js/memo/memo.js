@@ -62,6 +62,11 @@ function tableContents(list) {
         tr.insertCell(6).innerText = value.modifiedBy;
         tr.insertCell(7).innerText = value.modifiedDate;
 
+        tr.addEventListener("click", function () {
+            const URI = '/memo/detail?memoSeq='+2;
+            location.href=URI;
+        });
+
     }
 
     // JSON 으로 받아와서 아래와 같이 테이블에 넣어 유지보수가 쉽게 하려하였으나 JSON은 순서보장이 안된다 하여 위와 같이 수정
