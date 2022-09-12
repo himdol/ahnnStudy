@@ -1,6 +1,7 @@
 package com.example.springstudy.controller.memo;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,8 +18,8 @@ public class MemoController {
     }
 
     @GetMapping("/detail")
-    public String showDetailPage(@RequestParam @Valid Long memoSeq) {
-        System.out.println(memoSeq);
+    public String showDetailPage(@RequestParam @Valid Long memoSeq, Model model) {
+        model.addAttribute("memoSeq", memoSeq);
         return "memo/detail";
     }
 }

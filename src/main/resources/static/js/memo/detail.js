@@ -1,13 +1,22 @@
+memoSeq.
+
 window.onload = function () {
-    console.log("디테일페이지임");
-    main.init();
+    detail.init();
 };
 
 
-let main = (function () {
+let detail = (function () {
     return {
         init: function () {
-            console.log("detail page");
+            bind.page();
         }
     };
+}());
+
+let bind = (function () {
+    return {
+        page: function () {
+            let xhr = new XMLHttpRequest();
+        }
+    }
 }());
