@@ -36,4 +36,4 @@ document.getElementById("reply-insert-button").addEventListener("click", functio
 
 window.onload = function () {
     detail.init();
-};
+}
