@@ -3,7 +3,6 @@ package com.example.springstudy.controller.reply;
 import com.example.springstudy.dto.ReplyDto;
 import com.example.springstudy.service.reply.ReplyService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +17,7 @@ public class ReplyRestController {
     }
 
     @GetMapping("/save")
-    public ReplyDto save(@RequestBody ReplyDto replyDto) {
+    public ReplyDto save() {
         replyService.testSelectNumberOne(1);
         return null;
     }
