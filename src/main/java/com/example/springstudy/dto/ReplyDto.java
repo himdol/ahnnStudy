@@ -1,5 +1,6 @@
 package com.example.springstudy.dto;
 
+import com.example.springstudy.entity.reply.ReplyEntity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -14,7 +15,7 @@ import java.util.Date;
 public class ReplyDto {
 
     @Column(name = "SEQ")
-    private int SEQ;
+    private int seq;
 
     @Column(name = "HIGH_SEQ", nullable = false)
     private int highSeq;
@@ -49,4 +50,18 @@ public class ReplyDto {
     @Builder.Default
     @LastModifiedBy
     private String modifiedBy = "";
+
+    public static ReplyDto builderFromDto(ReplyEntity entity){
+        return  ReplyDto.builder()
+                .seq(entity.getSeq())
+                .dirSeq(entity.getDirSeq())
+                .highSeq(entity.getHighSeq())
+                .replyWriter(entity.getReplyWriter())
+                .replyComment(entity.getReplyComment())
+                .createBy(entity.getCreateBy())
+                .createDate(entity.getCreateDate())
+                .modifiedBy(entity.getModifiedBy())
+                .modifiedDate(entity.getModifiedDate())
+                .build();
+    }
 }

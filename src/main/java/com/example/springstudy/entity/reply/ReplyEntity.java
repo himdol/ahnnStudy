@@ -1,6 +1,11 @@
 package com.example.springstudy.entity.reply;
 
+import com.example.springstudy.dto.ReplyDto;
 import com.example.springstudy.entity.common.BaseEntity;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +14,14 @@ import javax.persistence.Table;
 
 @Entity(name="REPLY")
 @Table(name="REPLY")
+@RequiredArgsConstructor
+@Getter
+@SuperBuilder
 public class ReplyEntity extends BaseEntity {
 
     @Column(name = "SEQ")
     @Id
-    private int SEQ;
+    private int seq;
 
     @Column(name = "HIGH_SEQ", nullable = false)
     private int highSeq;
@@ -22,9 +30,26 @@ public class ReplyEntity extends BaseEntity {
     private int dirSeq;
 
     @Column(name = "REPLY_WRITER", nullable = false)
-    private String replyWriter;
+    @Builder.Default
+    private String replyWriter = "";
 
     @Column(name = "REPLY_COMMENT", nullable = false)
-    private String replyComment;
+    @Builder.Default
+    private String replyComment = "";
+
+
+    public static ReplyEntity builderFromDto(ReplyDto dto){
+        return  ReplyEntity.builder()
+                .seq(dto.getSeq())
+                .dirSeq(dto.getDirSeq())
+                .highSeq(dto.getHighSeq())
+                .replyWriter(dto.getReplyWriter())
+                .replyComment(dto.getReplyComment())
+                .createBy(dto.getCreateBy())
+                .createDate(dto.getCreateDate())
+                .modifiedBy(dto.getModifiedBy())
+                .modifiedDate(dto.getModifiedDate())
+                .build();
+    }
 
 }

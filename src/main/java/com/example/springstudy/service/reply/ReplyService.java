@@ -5,6 +5,8 @@ import com.example.springstudy.entity.reply.ReplyEntity;
 import com.example.springstudy.repository.reply.ReplyRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReplyService {
 
@@ -14,8 +16,14 @@ public class ReplyService {
         this.replyRepository = replyRepository;
     }
 
-    public ReplyDto testSelectNumberOne(int i) {
-        ReplyEntity replyEntity = replyRepository.testSelectNumberOne(i);
+    public ReplyDto testSelectNumberOne(ReplyDto dto) {
+
+        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
+
+        List<ReplyEntity> replyEntitys = replyRepository.testSelectNumberOne(replyEntity);
+
+        System.out.println(replyEntitys.toString());
+
         return null;
     }
 }
