@@ -20,7 +20,7 @@ public class ReplyRestController {
 
     @GetMapping("/save")
     public ReplyDto save() {
-        ReplyDto dto = ReplyDto.builder().seq(1).build();
+        ReplyDto dto = ReplyDto.builder().seq(100).build();
         replyService.testSelectNumberOne(dto);
         return null;
     }

@@ -21,9 +21,6 @@ public class ReplyService {
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
 
         List<ReplyEntity> replyEntitys = replyRepository.testSelectNumberOne(replyEntity);
-
-        System.out.println(replyEntitys.toString());
-
         return null;
     }
 }

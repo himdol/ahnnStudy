@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
 
-    @Query(value = "SELECT a.SEQ from REPLY a where a.SEQ= :#{paramReply.seq}", nativeQuery = true)
-    List<ReplyEntity> testSelectNumberOne(@Param("paramReply") ReplyEntity seq);
+    @Query(value = "SELECT * from REPLY where SEQ =:#{#paramReply.seq}", nativeQuery = true)
+    List<ReplyEntity> testSelectNumberOne(@Param("paramReply") ReplyEntity paramReply);
 
 }
