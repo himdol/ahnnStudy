@@ -20,7 +20,7 @@ let reply = (function () {
     return {
         saved : function () {
             const jsonData = {
-                "seq" : 100,
+                "seq" : 101,
                 "highSeq" : seq,
                 "dirSeq" : 0,
                 "replyWriter" : "TESTER",

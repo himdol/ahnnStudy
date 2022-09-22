@@ -5,8 +5,6 @@ import com.example.springstudy.entity.reply.ReplyEntity;
 import com.example.springstudy.repository.reply.ReplyRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ReplyService {
 
@@ -18,7 +16,7 @@ public class ReplyService {
 
     public ReplyDto saveReply(ReplyDto dto) {
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        List<ReplyEntity> replyEntitys = replyRepository.saveReply(replyEntity);
+        int result = replyRepository.saveReply(replyEntity);
         return null;
     }
 

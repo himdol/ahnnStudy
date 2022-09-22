@@ -2,14 +2,16 @@ package com.example.springstudy.repository.reply;
 
 import com.example.springstudy.entity.reply.ReplyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
 
-    @Query(value = "SELECT * from REPLY where SEQ =:#{#paramReply.seq}", nativeQuery = true)
-    List<ReplyEntity> saveReply(@Param("paramReply") ReplyEntity paramReply);
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO REPLY (seq, high_seq, dir_seq, reply_writer, reply_comment, del_yn, created_by, created_date, modified_by, modified_date) values (:#{#paramReply.seq}, :#{#paramReply.highSeq},:#{#paramReply.dirSeq},:#{#paramReply.replyWriter}, :#{#paramReply.replyComment}, :#{#paramReply.delYn}, :#{#paramReply.createBy}, :#{#paramReply.createDate}, :#{#paramReply.modifiedBy}, :#{#paramReply.modifiedDate});", nativeQuery = true)
+    int saveReply(@Param("paramReply") ReplyEntity paramReply);
 
 }
