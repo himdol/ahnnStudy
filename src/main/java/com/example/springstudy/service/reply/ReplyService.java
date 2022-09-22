@@ -17,10 +17,9 @@ public class ReplyService {
     }
 
     public ReplyDto testSelectNumberOne(ReplyDto dto) {
-
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-
         List<ReplyEntity> replyEntitys = replyRepository.testSelectNumberOne(replyEntity);
         return null;
     }
+
 }

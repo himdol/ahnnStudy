@@ -15,10 +15,22 @@ let bind = (function () {
     }
 }());
 
-var reply = (function () {
+let reply = (function () {
+    const xhr = new XMLHttpRequest();
     return {
         saved : function () {
-            console.log("saved");
+            const url = '/api/reply/save'
+            xhr.responseType = 'json';
+            xhr.open("GET", url);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+            xhr.onload = function(e) {
+                if (this.status == 200) {
+                    alert('성공');
+                } else {
+                    alert('실패');
+                }
+            }
+            xhr.send();
         },
         deleted : function () {
             console.log("deleted");
@@ -30,7 +42,6 @@ var reply = (function () {
 }());
 
 document.getElementById("reply-insert-button").addEventListener("click", function () {
-    console.log("click to button");
     reply.saved();
 });
 
