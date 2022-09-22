@@ -19,9 +19,21 @@ let reply = (function () {
     const xhr = new XMLHttpRequest();
     return {
         saved : function () {
-            const url = '/api/reply/save'
-            xhr.responseType = 'json';
-            xhr.open("GET", url);
+            const jsonData = {
+                "seq" : 100,
+                "highSeq" : seq,
+                "dirSeq" : 0,
+                "replyWriter" : "TESTER",
+                "replyComment" : "TESTER",
+                "createDate" : null,
+                "createBy" : "himdolJson",
+                "modifiedDate" : null,
+                "modifiedBy" : "himdolJson",
+            };
+            const url = '/api/reply/save';
+            // xhr.responseType = 'json';
+            console.log(JSON.stringify(jsonData));
+            xhr.open("POST", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
@@ -30,7 +42,7 @@ let reply = (function () {
                     alert('실패');
                 }
             }
-            xhr.send();
+            xhr.send(JSON.stringify(jsonData));
         },
         deleted : function () {
             console.log("deleted");

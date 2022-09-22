@@ -16,9 +16,9 @@ public class ReplyService {
         this.replyRepository = replyRepository;
     }
 
-    public ReplyDto testSelectNumberOne(ReplyDto dto) {
+    public ReplyDto saveReply(ReplyDto dto) {
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        List<ReplyEntity> replyEntitys = replyRepository.testSelectNumberOne(replyEntity);
+        List<ReplyEntity> replyEntitys = replyRepository.saveReply(replyEntity);
         return null;
     }
 

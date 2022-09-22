@@ -3,9 +3,7 @@ package com.example.springstudy.controller.reply;
 import com.example.springstudy.dto.ReplyDto;
 import com.example.springstudy.service.reply.ReplyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/reply")
@@ -14,10 +12,9 @@ public class ReplyRestController {
 
     private final ReplyService replyService;
 
-    @GetMapping("/save")
-    public ReplyDto save() {
-        ReplyDto dto = ReplyDto.builder().seq(100).build();
-        replyService.testSelectNumberOne(dto);
+    @PostMapping("/save")
+    public ReplyDto saveReply(@RequestBody ReplyDto replyDto) {
+        replyService.saveReply(replyDto);
         return null;
     }
 
