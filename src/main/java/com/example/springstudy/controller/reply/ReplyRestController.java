@@ -14,10 +14,6 @@ public class ReplyRestController {
 
     private final ReplyService replyService;
 
-//    public ReplyRestController (ReplyService replyService) {
-//        this.replyService = replyService;
-//    }
-
     @GetMapping("/save")
     public ReplyDto save() {
         ReplyDto dto = ReplyDto.builder().seq(100).build();
