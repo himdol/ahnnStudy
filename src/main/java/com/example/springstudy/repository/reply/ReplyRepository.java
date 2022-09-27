@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
 
     @Modifying
@@ -14,4 +16,6 @@ public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
     @Query(value = "INSERT INTO REPLY (seq, high_seq, dir_seq, reply_writer, reply_comment, del_yn, created_by, created_date, modified_by, modified_date) values (:#{#paramReply.seq}, :#{#paramReply.highSeq},:#{#paramReply.dirSeq},:#{#paramReply.replyWriter}, :#{#paramReply.replyComment}, :#{#paramReply.delYn}, :#{#paramReply.createBy}, :#{#paramReply.createDate}, :#{#paramReply.modifiedBy}, :#{#paramReply.modifiedDate});", nativeQuery = true)
     int saveReply(@Param("paramReply") ReplyEntity paramReply);
 
+
+    List<ReplyEntity> findAllByHighSeq(Integer integers);
 }

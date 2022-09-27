@@ -5,6 +5,8 @@ import com.example.springstudy.entity.reply.ReplyEntity;
 import com.example.springstudy.repository.reply.ReplyRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReplyService {
 
@@ -18,6 +20,12 @@ public class ReplyService {
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
         int result = replyRepository.saveReply(replyEntity);
         return result;
+    }
+
+    public List<ReplyDto> findAllByHighSeq(ReplyDto replyDto) {
+        Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
+        List<ReplyEntity> replyEntityList = replyRepository.findAllByHighSeq(highSeq);
+        return null;
     }
 
 }

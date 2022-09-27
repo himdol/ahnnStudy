@@ -12,8 +12,7 @@ let bind = (function () {
             let xhr = new XMLHttpRequest();
             const url = '/api/reply/save';
             // xhr.responseType = 'json';
-            console.log(JSON.stringify(jsonData));
-            xhr.open("POST", url);
+            xhr.open("GET", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
