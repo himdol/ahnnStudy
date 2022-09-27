@@ -14,10 +14,10 @@ public class ReplyService {
         this.replyRepository = replyRepository;
     }
 
-    public ReplyDto saveReply(ReplyDto dto) {
+    public int saveReply(ReplyDto dto) {
         ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
         int result = replyRepository.saveReply(replyEntity);
-        return null;
+        return result;
     }
 
 }

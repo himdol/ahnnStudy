@@ -9,8 +9,20 @@ let detail = (function () {
 let bind = (function () {
     return {
         page: function () {
-            console.log("init")
             let xhr = new XMLHttpRequest();
+            const url = '/api/reply/save';
+            // xhr.responseType = 'json';
+            console.log(JSON.stringify(jsonData));
+            xhr.open("POST", url);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
+            xhr.onload = function(e) {
+                if (this.status == 200) {
+                    location.reload();
+                } else {
+                    alert('실패');
+                }
+            }
+            xhr.send(JSON.stringify(jsonData));
         }
     }
 }());
@@ -19,12 +31,14 @@ let reply = (function () {
     const xhr = new XMLHttpRequest();
     return {
         saved : function () {
+            const replyComment = document.getElementById("reply-box").value;
+
             const jsonData = {
-                "seq" : 101,
+                "seq" : 103,
                 "highSeq" : seq,
                 "dirSeq" : 0,
                 "replyWriter" : "TESTER",
-                "replyComment" : "TESTER",
+                "replyComment" : replyComment,
                 "createDate" : null,
                 "createBy" : "himdolJson",
                 "modifiedDate" : null,
@@ -37,7 +51,7 @@ let reply = (function () {
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
-                    alert('성공');
+                    location.reload();
                 } else {
                     alert('실패');
                 }
