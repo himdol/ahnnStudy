@@ -9,19 +9,30 @@ let detail = (function () {
 let bind = (function () {
     return {
         page: function () {
+
+            const replyDto = {
+                "highSeq" : seq,
+            };
+
+            console.log(JSON.stringify(replyDto));
+
             let xhr = new XMLHttpRequest();
-            const url = '/api/reply/save';
-            // xhr.responseType = 'json';
-            xhr.open("GET", url);
+            const url = '/api/reply/detail';
+            xhr.responseType = 'json';
+            xhr.open("POST", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
+                    alert(this.status);
+                    alert("bind");
                     location.reload();
                 } else {
+                    alert(this.status);
+                    alert("bind");
                     alert('실패');
                 }
             }
-            xhr.send(JSON.stringify(jsonData));
+            xhr.send(JSON.stringify(replyDto));
         }
     }
 }());
@@ -33,7 +44,7 @@ let reply = (function () {
             const replyComment = document.getElementById("reply-box").value;
 
             const jsonData = {
-                "seq" : 103,
+                "seq" : 105,
                 "highSeq" : seq,
                 "dirSeq" : 0,
                 "replyWriter" : "TESTER",
@@ -50,8 +61,12 @@ let reply = (function () {
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
+                    alert(this.status);
+                    alert("300");
                     location.reload();
                 } else {
+                    alert(this.status);
+                    alert("300");
                     alert('실패');
                 }
             }

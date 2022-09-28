@@ -19,10 +19,9 @@ public class ReplyRestController {
         return replyService.saveReply(replyDto);
     }
 
-    @GetMapping("/detail")
-    public List<ReplyDto> findAllByHighSeq(@RequestBody ReplyDto replyDto) {
+    @PostMapping("/detail")
+    public void findAllByHighSeq(@RequestBody ReplyDto replyDto) {
         List<ReplyDto> replyDtoList = replyService.findAllByHighSeq(replyDto);
-        return replyDtoList;
     }
 
 
