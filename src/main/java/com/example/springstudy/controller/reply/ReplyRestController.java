@@ -20,8 +20,9 @@ public class ReplyRestController {
     }
 
     @PostMapping("/detail")
-    public void findAllByHighSeq(@RequestBody ReplyDto replyDto) {
+    public List<ReplyDto> findAllByHighSeq(@RequestBody ReplyDto replyDto) {
         List<ReplyDto> replyDtoList = replyService.findAllByHighSeq(replyDto);
+        return replyDtoList;
     }
 
 
