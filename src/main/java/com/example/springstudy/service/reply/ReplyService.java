@@ -24,8 +24,7 @@ public class ReplyService {
 
     public List<ReplyDto> findAllByHighSeq(ReplyDto replyDto) {
         Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
-        List<ReplyEntity> replyEntityList = replyRepository.findAllByHighSeq(highSeq);
-        return null;
+        return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeq(highSeq));
     }
 
 }

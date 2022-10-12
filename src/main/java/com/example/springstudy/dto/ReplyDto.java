@@ -6,7 +6,9 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Data
@@ -37,5 +39,16 @@ public class ReplyDto implements Serializable {
                 .modifiedBy(entity.getModifiedBy())
                 .modifiedDate(entity.getModifiedDate())
                 .build();
+    }
+
+    public static List<ReplyDto> builderFromEntityList(List<ReplyEntity> entityList) {
+
+        List<ReplyDto> replyDtoList = new ArrayList<>();
+
+        for(ReplyEntity entity : entityList) {
+            replyDtoList.add(ReplyDto.builderFromEntity(entity));
+        }
+        
+        return replyDtoList;
     }
 }

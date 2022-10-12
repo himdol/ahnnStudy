@@ -14,22 +14,18 @@ let bind = (function () {
                 "highSeq" : seq,
             };
 
-            console.log(JSON.stringify(replyDto));
-
             let xhr = new XMLHttpRequest();
             const url = '/api/reply/detail';
             xhr.responseType = 'json';
             xhr.open("POST", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
-            xhr.onload = function(e) {
+            xhr.onload = function(data) {
                 if (this.status == 200) {
-                    alert(this.status);
-                    alert("bind");
-                    location.reload();
+                    let showContents = xhr.response;
+                    // const responseData = JSON.parse();
+                    console.log(xhr.response);
                 } else {
-                    alert(this.status);
-                    alert("bind");
-                    alert('실패');
+
                 }
             }
             xhr.send(JSON.stringify(replyDto));
@@ -80,6 +76,8 @@ let reply = (function () {
         }
     };
 }());
+
+let showReply
 
 document.getElementById("reply-insert-button").addEventListener("click", function () {
     reply.saved();
