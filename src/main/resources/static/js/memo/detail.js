@@ -19,11 +19,12 @@ let bind = (function () {
             xhr.responseType = 'json';
             xhr.open("POST", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
-            xhr.onload = function(data) {
+            xhr.onload = function() {
                 if (this.status == 200) {
-                    let showContents = xhr.response;
-                    // const responseData = JSON.parse();
-                    console.log(xhr.response);
+                    showContents(xhr.response);
+
+
+
                 } else {
 
                 }
@@ -33,6 +34,9 @@ let bind = (function () {
     }
 }());
 
+
+document.getElementById("")
+
 let reply = (function () {
     const xhr = new XMLHttpRequest();
     return {
@@ -40,7 +44,7 @@ let reply = (function () {
             const replyComment = document.getElementById("reply-box").value;
 
             const jsonData = {
-                "seq" : 105,
+                "seq" : 106,
                 "highSeq" : seq,
                 "dirSeq" : 0,
                 "replyWriter" : "TESTER",
@@ -82,6 +86,16 @@ let showReply
 document.getElementById("reply-insert-button").addEventListener("click", function () {
     reply.saved();
 });
+
+function showContents(data) {
+
+    for (let i = 0; i < data.length; i++) {
+        document.getElementById("reply-row").innerHTML = "<div>hello</div>";
+
+    }
+
+
+}
 
 window.onload = function () {
     detail.init();
