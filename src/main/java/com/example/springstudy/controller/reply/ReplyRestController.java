@@ -3,10 +3,12 @@ package com.example.springstudy.controller.reply;
 import com.example.springstudy.dto.ReplyDto;
 import com.example.springstudy.service.reply.ReplyService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/reply")
 @RequiredArgsConstructor
@@ -20,8 +22,8 @@ public class ReplyRestController {
     }
 
     @PostMapping("/detail")
-    public List<ReplyDto> findAllByHighSeq(@RequestBody ReplyDto replyDto) {
-        return replyService.findAllByHighSeq(replyDto);
+    public List<ReplyDto> findAllByHighSeqOrderByRefAscSeqAsc(@RequestBody ReplyDto replyDto) {
+        return replyService.findAllByHighSeqOrderByRefAscSeqAsc(replyDto);
     }
 
 

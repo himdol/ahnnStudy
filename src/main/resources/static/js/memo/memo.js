@@ -1,5 +1,4 @@
 window.onload = function () {
-    console.log("이거 들어옴?");
     main.init();
 };
 
@@ -63,7 +62,7 @@ function tableContents(list) {
         tr.insertCell(7).innerText = value.modifiedDate;
 
         tr.addEventListener("click", function () {
-            const URI = '/memo/detail?memoSeq='+2;
+            const URI = '/memo/detail?memoSeq='+value.memoSeq;
             location.href=URI;
         });
 

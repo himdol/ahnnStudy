@@ -16,6 +16,7 @@ public class ReplyDto implements Serializable {
 
     private static final long serialVersionUID = 4253638076541695230L;
 
+    private int ref;
     @Column(name = "seq")
     private int seq;
     private int highSeq;
@@ -29,6 +30,7 @@ public class ReplyDto implements Serializable {
     private String modifiedBy;
     public static ReplyDto builderFromEntity(ReplyEntity entity){
         return  ReplyDto.builder()
+                .ref(entity.getRef())
                 .seq(entity.getSeq())
                 .dirSeq(entity.getDirSeq())
                 .highSeq(entity.getHighSeq())

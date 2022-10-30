@@ -19,6 +19,9 @@ import javax.persistence.Table;
 @SuperBuilder
 public class ReplyEntity extends BaseEntity {
 
+    @Column(name = "REF")
+    private int ref;
+
     @Column(name = "SEQ")
     @Id
     private int seq;
@@ -40,6 +43,7 @@ public class ReplyEntity extends BaseEntity {
 
     public static ReplyEntity builderFromDto(ReplyDto dto){
         return  ReplyEntity.builder()
+                .ref(dto.getRef())
                 .seq(dto.getSeq())
                 .dirSeq(dto.getDirSeq())
                 .highSeq(dto.getHighSeq())

@@ -6,6 +6,8 @@ let detail = (function () {
     };
 }());
 
+let __replyTable = document.getElementById("reply-table");
+
 let bind = (function () {
     return {
         page: function () {
@@ -21,21 +23,16 @@ let bind = (function () {
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function() {
                 if (this.status == 200) {
+                    alert("성공");
                     showContents(xhr.response);
-
-
-
                 } else {
-
+                    alert("데이터 불러오는데 실패 했습니다.");
                 }
             }
             xhr.send(JSON.stringify(replyDto));
         }
     }
 }());
-
-
-document.getElementById("")
 
 let reply = (function () {
     const xhr = new XMLHttpRequest();
@@ -44,7 +41,7 @@ let reply = (function () {
             const replyComment = document.getElementById("reply-box").value;
 
             const jsonData = {
-                "seq" : 106,
+                "seq" : seq,
                 "highSeq" : seq,
                 "dirSeq" : 0,
                 "replyWriter" : "TESTER",
@@ -62,11 +59,10 @@ let reply = (function () {
             xhr.onload = function(e) {
                 if (this.status == 200) {
                     alert(this.status);
-                    alert("300");
+                    alert("성공");
                     location.reload();
                 } else {
                     alert(this.status);
-                    alert("300");
                     alert('실패');
                 }
             }
@@ -81,19 +77,23 @@ let reply = (function () {
     };
 }());
 
-let showReply
-
 document.getElementById("reply-insert-button").addEventListener("click", function () {
     reply.saved();
 });
 
 function showContents(data) {
 
-    for (let i = 0; i < data.length; i++) {
-        document.getElementById("reply-row").innerHTML = "<div>hello</div>";
-
+    for (let [index, value] of data.entries()) {
+        let tr = __replyTable.insertRow();
+        tr.insertCell(0).innerText = value.replyComment;
+        tr.insertCell(1).innerText = value.createBy;
+        tr.insertCell(2).innerText = value.replyWriter;
+        tr.insertCell(3).innerText = value.createDate;
+        tr.insertCell(4).innerHTML ="<div class=\"btn-group\">\n" +
+                                                "<button className=\"btn btn-outline-primary reply-modify\" type=\"button\">MODIFY</button>\n"+
+                                                "<button className=\"btn btn-outline-primary reply-deleted\" type=\"button\">DELETE</button>\n"+
+                                            "</div>"
     }
-
 
 }
 
