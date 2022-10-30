@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @SuperBuilder
 public class ReplyEntity extends BaseEntity {
 
-    @Column(name = "REF")
+    @Column(name = "REF", nullable = false)
     private int ref;
 
     @Column(name = "SEQ")

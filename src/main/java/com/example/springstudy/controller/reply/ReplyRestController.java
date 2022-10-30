@@ -22,8 +22,8 @@ public class ReplyRestController {
     }
 
     @PostMapping("/detail")
-    public List<ReplyDto> findAllByHighSeqOrderByRefAscSeqAsc(@RequestBody ReplyDto replyDto) {
-        return replyService.findAllByHighSeqOrderByRefAscSeqAsc(replyDto);
+    public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(@RequestBody ReplyDto replyDto) {
+        return replyService.findAllByHighSeqOrderByRefAscDirSeqAsc(replyDto);
     }
 
 

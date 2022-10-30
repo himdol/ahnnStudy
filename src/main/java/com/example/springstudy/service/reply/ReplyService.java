@@ -22,9 +22,9 @@ public class ReplyService {
         return result;
     }
 
-    public List<ReplyDto> findAllByHighSeqOrderByRefAscSeqAsc(ReplyDto replyDto) {
+    public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(ReplyDto replyDto) {
         Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
-        return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscSeqAsc(highSeq));
+        return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscDirSeqAsc(highSeq));
     }
 
 }

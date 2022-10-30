@@ -23,7 +23,6 @@ let bind = (function () {
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function() {
                 if (this.status == 200) {
-                    alert("성공");
                     showContents(xhr.response);
                 } else {
                     alert("데이터 불러오는데 실패 했습니다.");
@@ -38,13 +37,20 @@ let reply = (function () {
     const xhr = new XMLHttpRequest();
     return {
         saved : function () {
-            const replyComment = document.getElementById("reply-box").value;
+            let replyComment = document.getElementById("reply-box").value;
+            let lastReplyElementLength = document.getElementsByClassName("reply-group").length;
+            let lastReplyElementNum = 0;
 
-            const jsonData = {
-                "seq" : seq,
+            if(lastReplyElementLength != 0){
+                lastReplyElementNum = Number(document.getElementsByClassName("reply-group")[document.getElementsByClassName("reply-group").length-1].getAttribute("value"))+1;
+            }
+
+            let jsonData = {
+                "ref" : lastReplyElementNum,
+                "seq" : lastReplyElementNum,
                 "highSeq" : seq,
                 "dirSeq" : 0,
-                "replyWriter" : "TESTER",
+                "replyWriter" : "testHimdol",
                 "replyComment" : replyComment,
                 "createDate" : null,
                 "createBy" : "himdolJson",
@@ -52,17 +58,13 @@ let reply = (function () {
                 "modifiedBy" : "himdolJson",
             };
             const url = '/api/reply/save';
-            // xhr.responseType = 'json';
-            console.log(JSON.stringify(jsonData));
+            xhr.responseType = 'json';
             xhr.open("POST", url);
             xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8;');
             xhr.onload = function(e) {
                 if (this.status == 200) {
-                    alert(this.status);
-                    alert("성공");
                     location.reload();
                 } else {
-                    alert(this.status);
                     alert('실패');
                 }
             }
@@ -85,16 +87,28 @@ function showContents(data) {
 
     for (let [index, value] of data.entries()) {
         let tr = __replyTable.insertRow();
-        tr.insertCell(0).innerText = value.replyComment;
-        tr.insertCell(1).innerText = value.createBy;
-        tr.insertCell(2).innerText = value.replyWriter;
-        tr.insertCell(3).innerText = value.createDate;
-        tr.insertCell(4).innerHTML ="<div class=\"btn-group\">\n" +
-                                                "<button className=\"btn btn-outline-primary reply-modify\" type=\"button\">MODIFY</button>\n"+
-                                                "<button className=\"btn btn-outline-primary reply-deleted\" type=\"button\">DELETE</button>\n"+
-                                            "</div>"
+        if(value.dirSeq == 0) {
+            tr.insertCell(0).innerText = value.replyComment;
+            tr.insertCell(1).innerText = value.createBy;
+            tr.insertCell(2).innerText = value.replyWriter;
+            // tr.insertCell(3).innerText = value.createDate;
+            tr.insertCell(3).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
+                                                    "<button className=\"btn btn-outline-primary reply-add\" id=\"reply-add\" value=\""+value.seq+"\" type=\"button\">대댓글추가</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
+                                                "</div>"
+        } else {
+            tr.insertCell(0).innerText = "ㄴ";
+            tr.insertCell(1).innerText = value.replyComment;
+            tr.insertCell(2).innerText = value.createBy;
+            tr.insertCell(3).innerText = value.replyWriter;
+            // tr.insertCell(3).innerText = value.createDate;
+            tr.insertCell(4).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
+                "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
+                "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
+                "</div>"
+        }
     }
-
 }
 
 window.onload = function () {
