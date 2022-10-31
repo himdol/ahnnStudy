@@ -6,6 +6,38 @@ let detail = (function () {
     };
 }());
 
+window.onload = function () {
+    detail.init();
+}
+
+function showContents(data) {
+
+    for (let [index, value] of data.entries()) {
+        let tr = __replyTable.insertRow();
+        if(value.dirSeq == 0) {
+            tr.insertCell(0).innerText = value.replyComment;
+            tr.insertCell(1).innerText = value.createBy;
+            tr.insertCell(2).innerText = value.replyWriter;
+            // tr.insertCell(3).innerText = value.createDate;
+            tr.insertCell(3).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
+                "<button className=\"btn btn-outline-primary reply-add\" id=\"subReply-add-button"+value.seq+"\" value=\""+value.seq+"\" type=\"button\">대댓글추가</button>\n"+
+                "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
+                "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
+                "</div>"
+        } else {
+            tr.insertCell(0).innerText = "ㄴ";
+            tr.insertCell(1).innerText = value.replyComment;
+            tr.insertCell(2).innerText = value.createBy;
+            tr.insertCell(3).innerText = value.replyWriter;
+            // tr.insertCell(3).innerText = value.createDate;
+            tr.insertCell(4).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
+                "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
+                "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
+                "</div>"
+        }
+    }
+}
+
 let __replyTable = document.getElementById("reply-table");
 
 let bind = (function () {
@@ -40,7 +72,6 @@ let reply = (function () {
             let replyComment = document.getElementById("reply-box").value;
             let lastReplyElementLength = document.getElementsByClassName("reply-group").length+1;
             let lastReplyElementNum = 1;
-
 
             if(lastReplyElementLength != 1){
                 lastReplyElementNum = Number(document.getElementsByClassName("reply-group")[document.getElementsByClassName("reply-group").length-1].getAttribute("value"))+1;
@@ -93,36 +124,8 @@ document.getElementById("reply-insert-button").addEventListener("click", functio
 });
 
 
-function showContents(data) {
-
-    for (let [index, value] of data.entries()) {
-        let tr = __replyTable.insertRow();
-        if(value.dirSeq == 0) {
-            tr.insertCell(0).innerText = value.replyComment;
-            tr.insertCell(1).innerText = value.createBy;
-            tr.insertCell(2).innerText = value.replyWriter;
-            // tr.insertCell(3).innerText = value.createDate;
-            tr.insertCell(3).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
-                                                    "<button className=\"btn btn-outline-primary reply-add\" id=\"subReply-add-button\" value=\""+value.seq+"\" type=\"button\">대댓글추가</button>\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
-                                                "</div>"
-        } else {
-            tr.insertCell(0).innerText = "ㄴ";
-            tr.insertCell(1).innerText = value.replyComment;
-            tr.insertCell(2).innerText = value.createBy;
-            tr.insertCell(3).innerText = value.replyWriter;
-            // tr.insertCell(3).innerText = value.createDate;
-            tr.insertCell(4).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
-                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
-                                                "</div>"
-        }
-
-    }
-}
 
 
-window.onload = function () {
-    detail.init();
-}
+
+
+
