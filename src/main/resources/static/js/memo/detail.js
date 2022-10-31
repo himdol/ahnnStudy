@@ -38,10 +38,11 @@ let reply = (function () {
     return {
         saved : function () {
             let replyComment = document.getElementById("reply-box").value;
-            let lastReplyElementLength = document.getElementsByClassName("reply-group").length;
-            let lastReplyElementNum = 0;
+            let lastReplyElementLength = document.getElementsByClassName("reply-group").length+1;
+            let lastReplyElementNum = 1;
 
-            if(lastReplyElementLength != 0){
+
+            if(lastReplyElementLength != 1){
                 lastReplyElementNum = Number(document.getElementsByClassName("reply-group")[document.getElementsByClassName("reply-group").length-1].getAttribute("value"))+1;
             }
 
@@ -52,11 +53,13 @@ let reply = (function () {
                 "dirSeq" : 0,
                 "replyWriter" : "testHimdol",
                 "replyComment" : replyComment,
-                "createDate" : null,
+                "createDate" : "",
                 "createBy" : "himdolJson",
-                "modifiedDate" : null,
+                "modifiedDate" : "",
                 "modifiedBy" : "himdolJson",
             };
+
+            console.log(JSON.stringify(jsonData));
             const url = '/api/reply/save';
             xhr.responseType = 'json';
             xhr.open("POST", url);
@@ -69,6 +72,12 @@ let reply = (function () {
                 }
             }
             xhr.send(JSON.stringify(jsonData));
+        },
+        subSave : function () {
+            console.log("subSave");
+            let lastReplyElementLength = document.getElementsByClassName("reply-group").length;
+            let replyComment = document.getElementById("subReply-add-button").value;
+            console.log(replyComment);
         },
         deleted : function () {
             console.log("deleted");
@@ -83,6 +92,7 @@ document.getElementById("reply-insert-button").addEventListener("click", functio
     reply.saved();
 });
 
+
 function showContents(data) {
 
     for (let [index, value] of data.entries()) {
@@ -93,7 +103,7 @@ function showContents(data) {
             tr.insertCell(2).innerText = value.replyWriter;
             // tr.insertCell(3).innerText = value.createDate;
             tr.insertCell(3).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
-                                                    "<button className=\"btn btn-outline-primary reply-add\" id=\"reply-add\" value=\""+value.seq+"\" type=\"button\">대댓글추가</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-add\" id=\"subReply-add-button\" value=\""+value.seq+"\" type=\"button\">대댓글추가</button>\n"+
                                                     "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
                                                     "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
                                                 "</div>"
@@ -104,12 +114,14 @@ function showContents(data) {
             tr.insertCell(3).innerText = value.replyWriter;
             // tr.insertCell(3).innerText = value.createDate;
             tr.insertCell(4).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\">\n" +
-                "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
-                "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
-                "</div>"
+                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify\" value=\""+value.seq+"\" type=\"button\">댓글수정</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted\" value=\""+value.seq+"\" type=\"button\">댓글삭제</button>\n"+
+                                                "</div>"
         }
+
     }
 }
+
 
 window.onload = function () {
     detail.init();

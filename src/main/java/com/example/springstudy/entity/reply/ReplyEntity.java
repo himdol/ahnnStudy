@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity(name="REPLY")
 @Table(name="REPLY")
@@ -50,9 +51,9 @@ public class ReplyEntity extends BaseEntity {
                 .replyWriter(dto.getReplyWriter())
                 .replyComment(dto.getReplyComment())
                 .createBy(dto.getCreateBy())
-                .createDate(dto.getCreateDate())
+                .createDate(new Timestamp(System.currentTimeMillis()))
                 .modifiedBy(dto.getModifiedBy())
-                .modifiedDate(dto.getModifiedDate())
+                .modifiedDate(new Timestamp(System.currentTimeMillis()))
                 .build();
     }
 

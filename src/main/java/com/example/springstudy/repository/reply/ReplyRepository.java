@@ -13,7 +13,7 @@ public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO REPLY (seq, high_seq, dir_seq, reply_writer, reply_comment, del_yn, created_by, created_date, modified_by, modified_date) values (:#{#paramReply.seq}, :#{#paramReply.highSeq},:#{#paramReply.dirSeq},:#{#paramReply.replyWriter}, :#{#paramReply.replyComment}, :#{#paramReply.delYn}, :#{#paramReply.createBy}, :#{#paramReply.createDate}, :#{#paramReply.modifiedBy}, :#{#paramReply.modifiedDate});", nativeQuery = true)
+    @Query(value = "INSERT INTO REPLY (ref,seq, high_seq, dir_seq, reply_writer, reply_comment, del_yn, created_by, created_date, modified_by, modified_date) values (:#{#paramReply.ref},:#{#paramReply.seq}, :#{#paramReply.highSeq},:#{#paramReply.dirSeq},:#{#paramReply.replyWriter}, :#{#paramReply.replyComment}, :#{#paramReply.delYn}, :#{#paramReply.createBy}, :#{#paramReply.createDate}, :#{#paramReply.modifiedBy}, :#{#paramReply.modifiedDate});", nativeQuery = true)
     int saveReply(@Param("paramReply") ReplyEntity paramReply);
     List<ReplyEntity> findAllByHighSeqOrderByRefAscDirSeqAsc(Integer integers);
 }

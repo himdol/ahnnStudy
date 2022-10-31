@@ -6,8 +6,8 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -24,9 +24,9 @@ public class ReplyDto implements Serializable {
     private String replyWriter;
     private String replyComment;
     private String delYn;
-    private Date createDate;
+    private Timestamp createDate;
     private String createBy;
-    private Date modifiedDate;
+    private Timestamp modifiedDate;
     private String modifiedBy;
     public static ReplyDto builderFromEntity(ReplyEntity entity){
         return  ReplyDto.builder()

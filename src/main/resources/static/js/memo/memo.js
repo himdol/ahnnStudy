@@ -67,16 +67,4 @@ function tableContents(list) {
         });
 
     }
-
-    // JSON 으로 받아와서 아래와 같이 테이블에 넣어 유지보수가 쉽게 하려하였으나 JSON은 순서보장이 안된다 하여 위와 같이 수정
-    // for (let [index, value] of list.entries()) {
-    //
-    //     delete value.delYn;
-    //     let tr = __memoTable.insertRow(index + 1);
-    //     for (let i = 0; i < Object.keys(list[index]).length; i++) {
-    //         tr.insertCell(i).innerText = value[Object.keys(value)[i]];
-    //     }
-    //
-    // }
-
 }
