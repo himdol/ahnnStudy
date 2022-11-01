@@ -22,6 +22,12 @@ public class ReplyService {
         return result;
     }
 
+    public int saveSubReply(ReplyDto dto) {
+        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
+        int result = replyRepository.saveReply(replyEntity);
+        return result;
+    }
+
     public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(ReplyDto replyDto) {
         Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
         return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscDirSeqAsc(highSeq));
