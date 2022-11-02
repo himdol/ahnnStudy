@@ -16,4 +16,12 @@ public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
     @Query(value = "INSERT INTO REPLY (ref,seq, high_seq, dir_seq, reply_writer, reply_comment, del_yn, created_by, created_date, modified_by, modified_date) values (:#{#paramReply.ref},:#{#paramReply.seq}, :#{#paramReply.highSeq},:#{#paramReply.dirSeq},:#{#paramReply.replyWriter}, :#{#paramReply.replyComment}, :#{#paramReply.delYn}, :#{#paramReply.createBy}, :#{#paramReply.createDate}, :#{#paramReply.modifiedBy}, :#{#paramReply.modifiedDate});", nativeQuery = true)
     int saveReply(@Param("paramReply") ReplyEntity paramReply);
     List<ReplyEntity> findAllByHighSeqOrderByRefAscDirSeqAsc(Integer integers);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE REPLY r SET r.replyComment = :#{#paramReply.replyComment} where r.seq = :#{#paramReply.seq}")
+    int updateReply(@Param("paramReply") ReplyEntity paramReply);
+
+    @Transactional
+    int deleteBySeq(Integer integer);
 }

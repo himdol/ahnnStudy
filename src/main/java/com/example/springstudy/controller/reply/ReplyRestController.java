@@ -20,10 +20,9 @@ public class ReplyRestController {
     public int saveReply(@RequestBody ReplyDto replyDto) {
         return replyService.saveReply(replyDto);
     }
-
-    @PostMapping("/api/subReply/save")
-    public int saveSupReply(@RequestBody ReplyDto replyDto) {
-        return replyService.saveSubReply(replyDto);
+    @PostMapping("/update")
+    public int updateReply(@RequestBody ReplyDto replyDto) {
+        return replyService.updateReply(replyDto);
     }
 
     @PostMapping("/detail")
@@ -31,6 +30,10 @@ public class ReplyRestController {
         return replyService.findAllByHighSeqOrderByRefAscDirSeqAsc(replyDto);
     }
 
+    @PostMapping("/delete")
+    public int deleteBySeq(@RequestBody ReplyDto replyDto) {
+        return replyService.deleteBySeq(replyDto);
+    }
 
 
 }

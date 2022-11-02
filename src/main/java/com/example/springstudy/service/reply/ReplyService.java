@@ -22,15 +22,19 @@ public class ReplyService {
         return result;
     }
 
-    public int saveSubReply(ReplyDto dto) {
-        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        int result = replyRepository.saveReply(replyEntity);
-        return result;
-    }
-
     public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(ReplyDto replyDto) {
         Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
         return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscDirSeqAsc(highSeq));
+    }
+
+    public int updateReply(ReplyDto dto) {
+        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
+        return replyRepository.updateReply(replyEntity);
+    }
+
+    public int deleteBySeq(ReplyDto dto) {
+        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
+        return replyRepository.deleteBySeq(replyEntity.getSeq());
     }
 
 }
