@@ -16,6 +16,8 @@ public class ReplyDto implements Serializable {
 
     private static final long serialVersionUID = 4253638076541695230L;
 
+    @Column(name = "replyNo")
+    private int replyNo;
     private int ref;
     @Column(name = "seq")
     private int seq;
@@ -28,8 +30,10 @@ public class ReplyDto implements Serializable {
     private String createBy;
     private Timestamp modifiedDate;
     private String modifiedBy;
+
     public static ReplyDto builderFromEntity(ReplyEntity entity){
         return  ReplyDto.builder()
+                .replyNo(entity.getReplyNo())
                 .ref(entity.getRef())
                 .seq(entity.getSeq())
                 .dirSeq(entity.getDirSeq())

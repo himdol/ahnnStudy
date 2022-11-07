@@ -17,24 +17,19 @@ public class ReplyService {
     }
 
     public int saveReply(ReplyDto dto) {
-        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        int result = replyRepository.saveReply(replyEntity);
-        return result;
+        return replyRepository.saveReply(ReplyEntity.builderFromDto(dto));
     }
 
     public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(ReplyDto replyDto) {
-        Integer highSeq = Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq());
-        return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscDirSeqAsc(highSeq));
+        return ReplyDto.builderFromEntityList(replyRepository.findAllByHighSeqOrderByRefAscDirSeqAsc(Integer.valueOf(ReplyEntity.builderFromDto(replyDto).getHighSeq())));
     }
 
-    public int updateReply(ReplyDto dto) {
-        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        return replyRepository.updateReply(replyEntity);
+    public int updateByReplyNo(ReplyDto dto) {
+        return replyRepository.updateByReplyNo(ReplyEntity.builderFromDto(dto));
     }
 
-    public int deleteBySeq(ReplyDto dto) {
-        ReplyEntity replyEntity = ReplyEntity.builderFromDto(dto);
-        return replyRepository.deleteBySeq(replyEntity.getSeq());
+    public int deleteByReplyNo(ReplyDto dto) {
+        return replyRepository.deleteByReplyNo(Integer.valueOf(ReplyEntity.builderFromDto(dto).getReplyNo()));
     }
 
 }

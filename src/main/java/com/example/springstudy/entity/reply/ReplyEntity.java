@@ -20,11 +20,14 @@ import java.sql.Timestamp;
 @SuperBuilder
 public class ReplyEntity extends BaseEntity {
 
+    @Id
+    @Column(name = "REPLY_NO", nullable = false)
+    private int replyNo;
+
     @Column(name = "REF", nullable = false)
     private int ref;
 
     @Column(name = "SEQ")
-    @Id
     private int seq;
 
     @Column(name = "HIGH_SEQ", nullable = false)
@@ -41,9 +44,9 @@ public class ReplyEntity extends BaseEntity {
     @Builder.Default
     private String replyComment = "";
 
-
     public static ReplyEntity builderFromDto(ReplyDto dto){
         return  ReplyEntity.builder()
+                .replyNo(dto.getReplyNo())
                 .ref(dto.getRef())
                 .seq(dto.getSeq())
                 .dirSeq(dto.getDirSeq())

@@ -24,14 +24,14 @@ function showContents(data) {
             // tr.insertCell(3).innerText = value.createDate;
             tr.insertCell(3).colSpan = 3;
             tr.insertCell(3).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\">\n" +
-                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify"+value.seq+"\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글수정</button>\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted"+value.seq+"\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글삭제</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify"+value.seq+"\" value=\""+value.seq+"\" data-replyNo=\""+value.replyNo+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글수정</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-deleted\" class=\"\" id=\"reply-deleted"+value.seq+"\" value=\""+value.seq+"\" data-replyNo=\""+value.replyNo+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글삭제</button>\n"+
                                                 "</div>";
                 let ttr = __replyTable.insertRow().insertCell();
                 ttr.colSpan = 5;
                 ttr.innerHTML = "<div className=\"input-group mb-3\" id=\"reply-group\" data-dirSeq=\""+value.dirSeq+"\">\n"+
                                     "<input type=\"text\" class=\"form-control\" id=\"subReply-box"+value.seq+"\"  placeholder=\"답글 추가...\">\n" +
-                                    "<button class=\"btn btn-outline-secondary\" id=\"subReply-add-button"+value.seq+"\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">대댓글추가</button>\n"+
+                                    "<button class=\"btn btn-outline-secondary\" id=\"subReply-add-button"+value.seq+"\" value=\""+value.seq+"\"  data-replyNo=\""+value.replyNo+"\"  data-dirSeq=\""+value.dirSeq+"\" type=\"button\">대댓글추가</button>\n"+
                                 "</div>";
         } else {
             tr.insertCell(0).innerText = "ㄴ";
@@ -41,8 +41,8 @@ function showContents(data) {
             // tr.insertCell(3).innerText = value.createDate;
             tr.insertCell(4).innerHTML ="<div class=\"btn-group reply-group\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\">\n" +
                                                     "<input className=\"btn btn-outline-primary reply-add\" id=\"subReply-add-button"+value.seq+"\" value=\""+value.seq+"\" type=\"hidden\">\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify"+value.seq+"\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글수정</button>\n"+
-                                                    "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted"+value.seq+"\" value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글삭제</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-modify\" id=\"reply-modify"+value.seq+"\"  data-replyNo=\""+value.replyNo+"\"  value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글수정</button>\n"+
+                                                    "<button className=\"btn btn-outline-primary reply-deleted\" id=\"reply-deleted"+value.seq+"\"  data-replyNo=\""+value.replyNo+"\"  value=\""+value.seq+"\" data-dirSeq=\""+value.dirSeq+"\" type=\"button\">댓글삭제</button>\n"+
                                                 "</div>";
         }
         document.getElementById("subReply-add-button"+value.seq).addEventListener("click", function () {
@@ -162,8 +162,8 @@ let reply = (function () {
         },
         deleted : function (data) {
 
-            console.log(data);
             let jsonData = {
+                "replyNo" : Number(data.getAttribute("data-replyno")),
                 "ref" : data.value,
                 "seq" : data.value,
                 "highSeq" : seq,
@@ -193,6 +193,7 @@ let reply = (function () {
         modify : function (data) {
 
             let jsonData = {
+                "replyNo" : Number(data.getAttribute("data-replyno")),
                 "ref" : data.value,
                 "seq" : data.value,
                 "highSeq" : seq,

@@ -19,9 +19,9 @@ public interface ReplyRepository extends JpaRepository<ReplyEntity, Integer> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE REPLY r SET r.replyComment = :#{#paramReply.replyComment} where r.seq = :#{#paramReply.seq}")
-    int updateReply(@Param("paramReply") ReplyEntity paramReply);
+    @Query("UPDATE REPLY r SET r.replyComment = :#{#paramReply.replyComment} where r.replyNo = :#{#paramReply.replyNo}")
+    int updateByReplyNo(@Param("paramReply") ReplyEntity paramReply);
 
     @Transactional
-    int deleteBySeq(Integer integer);
+    int deleteByReplyNo(Integer integer);
 }

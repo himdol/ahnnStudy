@@ -20,19 +20,19 @@ public class ReplyRestController {
     public int saveReply(@RequestBody ReplyDto replyDto) {
         return replyService.saveReply(replyDto);
     }
-    @PostMapping("/update")
-    public int updateReply(@RequestBody ReplyDto replyDto) {
-        return replyService.updateReply(replyDto);
-    }
-
     @PostMapping("/detail")
     public List<ReplyDto> findAllByHighSeqOrderByRefAscDirSeqAsc(@RequestBody ReplyDto replyDto) {
         return replyService.findAllByHighSeqOrderByRefAscDirSeqAsc(replyDto);
     }
 
+    @PostMapping("/update")
+    public int updateReply(@RequestBody ReplyDto replyDto) {
+        return replyService.updateByReplyNo(replyDto);
+    }
+
     @PostMapping("/delete")
-    public int deleteBySeq(@RequestBody ReplyDto replyDto) {
-        return replyService.deleteBySeq(replyDto);
+    public int deleteByReplyNo(@RequestBody ReplyDto replyDto) {
+        return replyService.deleteByReplyNo(replyDto);
     }
 
 
