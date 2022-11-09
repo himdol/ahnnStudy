@@ -8,8 +8,8 @@ public class MenuService {
 
     private MenuRepository menuRepository;
 
-    public MenuService() {
-
+    public MenuService(MenuRepository menuRepository) {
+        this.menuRepository = menuRepository;
     }
 
 }

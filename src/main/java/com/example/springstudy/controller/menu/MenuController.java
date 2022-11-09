@@ -1,9 +1,15 @@
 package com.example.springstudy.controller.menu;
 
+import com.example.springstudy.dto.MenuDto;
 import com.example.springstudy.service.menu.MenuService;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import java.util.List;
+
+
+@RestController()
+@RequestMapping("/menu")
 public class MenuController {
 
     private MenuService menuService;
@@ -12,6 +18,10 @@ public class MenuController {
         this.menuService = menuService;
     }
 
+    public List<MenuDto> showMenuList() {
+        List<MenuDto> nuDto = null;
+        return nuDto;
+    }
 
 
 }
