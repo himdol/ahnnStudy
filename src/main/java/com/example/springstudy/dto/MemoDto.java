@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -25,9 +25,9 @@ public class MemoDto implements Serializable {
 
     @NotNull
     private String memoWriter;
-    private Timestamp createDate;
+    private LocalDateTime createDate;
     private String createBy = "";
-    private Timestamp modifiedDate;
+    private LocalDateTime modifiedDate;
     private String modifiedBy = "";
 
     public static MemoDto builderFromEntity(MemoEntity memoEntity){
@@ -36,8 +36,8 @@ public class MemoDto implements Serializable {
                 .memoTitle(memoEntity.getMemoTitle())
                 .memoContent(memoEntity.getMemoContent())
                 .memoWriter(memoEntity.getMemoWriter())
-                .createBy(memoEntity.getCreateBy())
-                .createDate(memoEntity.getCreateDate())
+                .createBy(memoEntity.getCreatedBy())
+                .createDate(memoEntity.getCreatedDate())
                 .modifiedBy(memoEntity.getModifiedBy())
                 .modifiedDate(memoEntity.getModifiedDate())
                 .build();

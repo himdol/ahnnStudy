@@ -18,7 +18,7 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    public List<MenuDto> showMenuList() {
+    public List<MenuDto> findAllMenuList() {
         List<MenuDto> nuDto = null;
         return nuDto;
     }

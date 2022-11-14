@@ -6,7 +6,7 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +26,9 @@ public class ReplyDto implements Serializable {
     private String replyWriter;
     private String replyComment;
     private String delYn;
-    private Timestamp createDate;
+    private LocalDateTime createDate;
     private String createBy;
-    private Timestamp modifiedDate;
+    private LocalDateTime modifiedDate;
     private String modifiedBy;
 
     public static ReplyDto builderFromEntity(ReplyEntity entity){
@@ -40,15 +40,15 @@ public class ReplyDto implements Serializable {
                 .highSeq(entity.getHighSeq())
                 .replyWriter(entity.getReplyWriter())
                 .replyComment(entity.getReplyComment())
-                .createBy(entity.getCreateBy())
-                .createDate(entity.getCreateDate())
+                .createBy(entity.getCreatedBy())
+                .createDate(entity.getCreatedDate())
                 .modifiedBy(entity.getModifiedBy())
                 .modifiedDate(entity.getModifiedDate())
                 .build();
     }
 
     public static List<ReplyDto> builderFromEntityList(List<ReplyEntity> entityList) {
-
+        // for문 사용을 바꿔보기
         List<ReplyDto> replyDtoList = new ArrayList<>();
 
         for(ReplyEntity entity : entityList) {

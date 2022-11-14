@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity(name="REPLY")
 @Table(name="REPLY")
@@ -53,10 +53,10 @@ public class ReplyEntity extends BaseEntity {
                 .highSeq(dto.getHighSeq())
                 .replyWriter(dto.getReplyWriter())
                 .replyComment(dto.getReplyComment())
-                .createBy(dto.getCreateBy())
-                .createDate(new Timestamp(System.currentTimeMillis()))
+                .createdBy(dto.getCreateBy())
+                .createdDate(LocalDateTime.now())
                 .modifiedBy(dto.getModifiedBy())
-                .modifiedDate(new Timestamp(System.currentTimeMillis()))
+                .modifiedDate(LocalDateTime.now())
                 .build();
     }
 

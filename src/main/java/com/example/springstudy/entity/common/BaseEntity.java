@@ -13,7 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @NoArgsConstructor
@@ -28,16 +28,16 @@ public class BaseEntity {
 
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate
-    private Timestamp createDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "CREATED_BY", nullable = false, updatable = false)
     @Builder.Default
     @CreatedBy
-    private String createBy = "";
+    private String createdBy = "";
 
     @Column(name = "MODIFIED_DATE", nullable = false)
     @LastModifiedDate
-    private Timestamp modifiedDate;
+    private LocalDateTime modifiedDate;
 
     @Column(name = "MODIFIED_BY", nullable = false)
     @Builder.Default

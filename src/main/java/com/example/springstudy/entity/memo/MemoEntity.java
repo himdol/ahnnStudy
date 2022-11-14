@@ -8,6 +8,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity(name = "MEMO")
 @Table(name = "MEMO")
@@ -38,10 +39,10 @@ public class MemoEntity extends BaseEntity {
                 .memoTitle(memoDto.getMemoTitle())
                 .memoContent(memoDto.getMemoContent())
                 .memoWriter(memoDto.getMemoWriter())
-                .createBy(memoDto.getCreateBy())
-                .createDate(memoDto.getCreateDate())
+                .createdBy(memoDto.getCreateBy())
+                .createdDate(LocalDateTime.now())
                 .modifiedBy(memoDto.getModifiedBy())
-                .modifiedDate(memoDto.getModifiedDate())
+                .modifiedDate(LocalDateTime.now())
                 .build();
     }
 
