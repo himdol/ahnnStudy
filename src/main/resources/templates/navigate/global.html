@@ -7,22 +7,26 @@
 <body>
     <div>
         <div>
-            <a>공지사항</a>
-            <a>자주묻는질문</a>
-            <a>일반게시판</a>
-            <a>자유게시판</a>
-            <a>커뮤니티</a>
-            <a>갤러리</a>
+            <a id="notice">공지사항</a>
+            <a id="qna">자주묻는질문</a>
+            <a id="normal">일반게시판</a>
+            <a id="free">자유게시판</a>
+            <a id="community">커뮤니티</a>
+            <a id="galley">갤러리</a>
         </div>
     </div>
+    <div>
+
+
+    </div>
     <script>
-        window.onload(function (){
-            bind.tableDataBind();
-        })
+        window.onload = function(){
+            bind.showMenuList();
+        }
 
         let bind = (function () {
             return {
-                tableDataBind: function () {
+                showMenuList: function () {
 
                     let httpRequest = new XMLHttpRequest();
                     httpRequest.open('GET', '/api/indexPageMenu');
@@ -32,6 +36,7 @@
                         if (httpRequest.readyState === XMLHttpRequest.DONE) {
                             if (httpRequest.status === 200) {
                                 alert("Request Api Success!");
+                                showMenuListAll(httpRequest.response);
                             } else {
                                 alert('Request api Error!');
                             }
@@ -41,6 +46,9 @@
                 }
             };
         }());
+        function showMenuListAll(data) {
+            console.log(data);
+        }
     </script>
 </body>
 </html>
