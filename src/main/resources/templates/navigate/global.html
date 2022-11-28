@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div>
+        <div>
+            <a>공지사항</a>
+            <a>자주묻는질문</a>
+            <a>일반게시판</a>
+            <a>자유게시판</a>
+            <a>커뮤니티</a>
+            <a>갤러리</a>
+        </div>
+    </div>
+    <script>
+        window.onload(function (){
+            bind.tableDataBind();
+        })
+
+        let bind = (function () {
+            return {
+                tableDataBind: function () {
+
+                    let httpRequest = new XMLHttpRequest();
+                    httpRequest.open('GET', '/api/indexPageMenu');
+                    httpRequest.responseType = "json";
+
+                    httpRequest.onreadystatechange = () => {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                            if (httpRequest.status === 200) {
+                                alert("Request Api Success!");
+                            } else {
+                                alert('Request api Error!');
+                            }
+                        }
+                    };
+                    httpRequest.send();
+                }
+            };
+        }());
+    </script>
+</body>
+</html>

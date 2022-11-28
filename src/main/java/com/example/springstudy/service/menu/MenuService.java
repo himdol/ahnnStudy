@@ -5,6 +5,7 @@ import com.example.springstudy.repository.menu.MenuRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuService {
@@ -16,8 +17,7 @@ public class MenuService {
     }
 
     public List<MenuDto> findAllMenuList() {
-        menuRepository.findAllMenuList();
-        return null;
+        return menuRepository.findAllMenuList().stream().map(MenuDto :: entityToDto).collect(Collectors.toList());
     }
 
 }

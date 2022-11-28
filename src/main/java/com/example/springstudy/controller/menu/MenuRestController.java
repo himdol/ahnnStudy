@@ -12,12 +12,16 @@ import java.util.List;
 public class MenuRestController {
     private MenuService menuService;
 
-    public MenuRestController(MenuService menuService) {
+    public MenuRestController( MenuService menuService ) {
         this.menuService = menuService;
     }
 
+    //#region - 메뉴 생성
+
+    @RequestMapping("/indexPageMenu")
     public List<MenuDto> findAllMenuList() {
-        List<MenuDto> nuDto = null;
-        return nuDto;
+        return menuService.findAllMenuList();
     }
+
+    //#endregion
 }

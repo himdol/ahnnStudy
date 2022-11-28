@@ -22,10 +22,6 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class BaseEntity {
 
-    @Column(name = "DEL_YN", nullable = false)
-    @Builder.Default
-    private String delYn = "N";
-
     @Column(name = "CREATED_DATE", nullable = false, updatable = false)
     @CreatedDate
     private LocalDateTime createdDate;
